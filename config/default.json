@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://social-dev-user:tEY6fJ7gFPLD05qp@cluster0-le1ab.mongodb.net/social-dev-prod?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://social-dev-user:tEY6fJ7gFPLD05qp@cluster0-le1ab.mongodb.net/social-dev-prod?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken"
 }
