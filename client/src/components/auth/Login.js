@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = (props) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -19,11 +19,11 @@ const Login = ({ login, isAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    login(email, password);
+    props.login(email, password);
   };
 
   // Redirect if loged in
-  if (isAuthenticated) {
+  if (props.isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
 
