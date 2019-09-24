@@ -1,10 +1,10 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile } from '../../actions/profile';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 
-const CreateProfile = (props) => {
+const EditProfile = (props) => {
   const [formData, setFormData] = useState({
     company: '',
     website: '',
@@ -21,19 +21,37 @@ const CreateProfile = (props) => {
   });
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
+  useEffect(() => {
+    props.getCurrentProfile();
+    setFormData({
+      company: props.profile.loading || !props.profile.profile.company ? '' : props.profile.profile.company,
+      website: props.profile.loading || !props.profile.profile.website ? '' : props.profile.profile.website,
+      location: props.profile.loading || !props.profile.profile.location ? '' : props.profile.profile.location,
+      status: props.profile.loading || !props.profile.profile.status ? '' : props.profile.profile.status,
+      skills: props.profile.loading || !props.profile.profile.skills ? '' : props.profile.profile.skills.join(','),
+      githubUsername: props.profile.loading || !props.profile.profile.githubUsername ? '' : props.profile.profile.githubUsername,
+      bio: props.profile.loading || !props.profile.profile.bio ? '' : props.profile.profile.bio,
+      twitter: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.twitter,
+      facebook: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.facebook,
+      linkedin: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.linkedin,
+      youtube: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.youtube,
+      instagram: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.instagram,
+    });
+  }, [props.profile.loading]);
+
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.createProfile(formData, props.history);
+    props.createProfile(formData, props.history, true);
   };
 
   return (
     <Fragment>
       <h1 className="large text-primary">
-        Create Your Profile
+        Edit Your Profile
       </h1>
       <p className="lead">
         <i className="fas fa-user"></i> Let's get some information to make your
@@ -125,12 +143,12 @@ const CreateProfile = (props) => {
 
             <div className="form-group social-input">
               <i className="fab fa-youtube fa-2x"></i>
-              <input type="text" placeholder="YouTube URL" name="youtube" value={formData.youtube} onChange={(e) => onChange(e)} />
+              <input type="text" placeholder="YouTube URL" name="youtube" value={formData.linkedin} onChange={(e) => onChange(e)} />
             </div>
 
             <div className="form-group social-input">
               <i className="fab fa-linkedin fa-2x"></i>
-              <input type="text" placeholder="Linkedin URL" name="linkedin" value={formData.linkedin} onChange={(e) => onChange(e)} />
+              <input type="text" placeholder="Linkedin URL" name="linkedin" value={formData.youtube} onChange={(e) => onChange(e)} />
             </div>
 
             <div className="form-group social-input">
@@ -151,8 +169,19 @@ const CreateProfile = (props) => {
   );
 };
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
-export default connect(null, { createProfile })(withRouter(CreateProfile));
+const mapStateToProps = (state) => (
+  {
+    profile: state.profile,
+  }
+);
+
+export default connect(
+  mapStateToProps,
+  { createProfile, getCurrentProfile },
+)(withRouter(EditProfile));
