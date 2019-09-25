@@ -62,7 +62,7 @@ const AddEducation = (props) => {
                 setFormData({ ...formData, current: !formData.current });
                 toggleDisable(!toDateDisable);
               }}
-            />{' '} Current
+            />{' '} Current School
           </p>
         </div>
         <div className="form-group">
