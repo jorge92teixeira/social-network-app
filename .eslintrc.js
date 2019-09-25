@@ -15,6 +15,7 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'no-console': 'off',
+    'no-underscore-dangle': 'off',
     'react/jsx-uses-vars': 'error',
     'react/jsx-uses-react': 'error',
   },

@@ -143,12 +143,12 @@ const EditProfile = (props) => {
 
             <div className="form-group social-input">
               <i className="fab fa-youtube fa-2x"></i>
-              <input type="text" placeholder="YouTube URL" name="youtube" value={formData.linkedin} onChange={(e) => onChange(e)} />
+              <input type="text" placeholder="YouTube URL" name="youtube" value={formData.youtube} onChange={(e) => onChange(e)} />
             </div>
 
             <div className="form-group social-input">
               <i className="fab fa-linkedin fa-2x"></i>
-              <input type="text" placeholder="Linkedin URL" name="linkedin" value={formData.youtube} onChange={(e) => onChange(e)} />
+              <input type="text" placeholder="Linkedin URL" name="linkedin" value={formData.linkedin} onChange={(e) => onChange(e)} />
             </div>
 
             <div className="form-group social-input">
