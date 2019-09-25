@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
+import Experience from './Experience';
+import Education from './Education';
 
 const Dashboard = (props) => {
   useEffect(() => {
@@ -25,6 +27,8 @@ const Dashboard = (props) => {
         props.profile.profile !== null
           ? <Fragment>
             <DashboardActions />
+            <Experience experience={props.profile.profile.experience}/>
+            <Education education={props.profile.profile.education}/>
           </Fragment>
           : <Fragment>
             <p>You have not yet setup a profile, please add some info</p>
