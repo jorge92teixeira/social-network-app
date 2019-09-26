@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { getGitHubRepos } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 
-const ProfileGithub = ({ username, getGitHubRepos, repos }) => {
+const ProfileGithub = ({ username, getGitHubReposConnect, repos }) => {
   useEffect(() => {
-    getGitHubRepos(username);
-  }, [getGitHubRepos]);
+    getGitHubReposConnect(username);
+  }, [getGitHubReposConnect, username]);
 
   return (
     <div className="profile-github">
@@ -44,7 +44,7 @@ const ProfileGithub = ({ username, getGitHubRepos, repos }) => {
 };
 
 ProfileGithub.propTypes = {
-  getGitHubRepos: PropTypes.func.isRequired,
+  getGitHubReposConnect: PropTypes.func.isRequired,
   repos: PropTypes.array.isRequired,
   username: PropTypes.string.isRequired,
 };
@@ -55,4 +55,7 @@ const mapStateToProps = (state) => (
   }
 );
 
-export default connect(mapStateToProps, { getGitHubRepos })(ProfileGithub);
+export default connect(
+  mapStateToProps,
+  { getGitHubReposConnect: getGitHubRepos },
+)(ProfileGithub);

@@ -5,14 +5,14 @@ import Spinner from '../layout/Spinner';
 import { getProfiles } from '../../actions/profile';
 import ProfileItem from './ProfileItem';
 
-const Profiles = (props) => {
+const Profiles = ({ getProfilesConnect, profile }) => {
   useEffect(() => {
-    props.getProfiles();
-  }, [props.getProfiles]);
+    getProfilesConnect();
+  }, [getProfilesConnect]);
 
   return (
     <Fragment>
-      { props.profile.loading
+      { profile.loading
         ? <Spinner />
         : <Fragment>
           <h1 className="large text-primary">Developers</h1>
@@ -21,8 +21,8 @@ const Profiles = (props) => {
             Browse and connect with developers
           </p>
           <div>
-            { props.profile.profiles.length > 0
-              ? (props.profile.profiles.map((p) => (
+            { profile.profiles.length > 0
+              ? (profile.profiles.map((p) => (
                 <ProfileItem key={p._id} profile={p} />
               ))
               ) : <h4>No profiles found...</h4>
@@ -35,7 +35,7 @@ const Profiles = (props) => {
 };
 
 Profiles.propTypes = {
-  getProfiles: PropTypes.func.isRequired,
+  getProfilesConnect: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
 
@@ -45,4 +45,7 @@ const mapStateToProps = (state) => (
   }
 );
 
-export default connect(mapStateToProps, { getProfiles })(Profiles);
+export default connect(
+  mapStateToProps,
+  { getProfilesConnect: getProfiles },
+)(Profiles);

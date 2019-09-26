@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEducation } from '../../actions/profile';
 
-const AddEducation = (props) => {
+const AddEducation = ({ addEducationConnect, history }) => {
   const [formData, setFormData] = useState({
     school: '',
     degree: '',
@@ -25,7 +25,7 @@ const AddEducation = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addEducation(formData, props.history);
+    addEducationConnect(formData, history);
   };
 
   return (
@@ -93,7 +93,10 @@ const AddEducation = (props) => {
 };
 
 AddEducation.propTypes = {
-  addEducation: PropTypes.func.isRequired,
+  addEducationConnect: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addEducation })(withRouter(AddEducation));
+export default connect(
+  null,
+  { addEducationConnect: addEducation },
+)(withRouter(AddEducation));

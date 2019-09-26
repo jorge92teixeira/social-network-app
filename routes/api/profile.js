@@ -92,7 +92,7 @@ router.post('/', [auth, [
     // Create
     profile = new Profile(profileFields);
     await profile.save();
-    res.json(profile);
+    return res.json(profile);
   } catch (err) {
     console.error(err.message);
     return res.status(500).send('Server Error');

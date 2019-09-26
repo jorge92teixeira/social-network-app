@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile } from '../../actions/profile';
 
-const CreateProfile = (props) => {
+const CreateProfile = ({ createProfileConnect, history }) => {
   const [formData, setFormData] = useState({
     company: '',
     website: '',
@@ -27,7 +27,7 @@ const CreateProfile = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.createProfile(formData, props.history);
+    createProfileConnect(formData, history);
   };
 
   return (
@@ -152,7 +152,10 @@ const CreateProfile = (props) => {
 };
 
 CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
+  createProfileConnect: PropTypes.func.isRequired,
 };
 
-export default connect(null, { createProfile })(withRouter(CreateProfile));
+export default connect(
+  null,
+  { createProfileConnect: createProfile },
+)(withRouter(CreateProfile));

@@ -10,46 +10,51 @@ import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
 import ProfileGithub from './ProfileGithub';
 
-const Profile = (props) => {
+const Profile = ({
+  getProfileByIdConnect,
+  profile,
+  auth,
+  match,
+}) => {
   useEffect(() => {
-    props.getProfileById(props.match.params.id);
-  }, []);
+    getProfileByIdConnect(match.params.id);
+  }, [getProfileByIdConnect, match.params.id]);
 
   return (
     <Fragment>
-      {props.profile.profile === null || props.profile.loading
+      {profile.profile === null || profile.loading
         ? <Spinner />
         : <Fragment>
           <Link to='/profiles' className="btn btn-light">
             Back to Profiles
           </Link>
           {
-            props.auth.isAuthenticated
-            && props.auth.loading === false
-            && props.auth.user._id === props.profile.profile.user._id
+            auth.isAuthenticated
+            && auth.loading === false
+            && auth.user._id === profile.profile.user._id
             && (<Link to='/edit-profile' className="btn btn-dark">Edit Profile</Link>)
           }
           <div className="profile-grid my-1">
-            <ProfileTop profile={props.profile.profile} />
-            <ProfileAbout profile={props.profile.profile} />
+            <ProfileTop profile={profile.profile} />
+            <ProfileAbout profile={profile.profile} />
             <div className="profile-exp bg-white p-2">
               <h2 className="text-primary">Experience</h2>
-              {props.profile.profile.experience.length > 0 ? (<Fragment>
-                {props.profile.profile.experience.map((exp) => (
+              {profile.profile.experience.length > 0 ? (<Fragment>
+                {profile.profile.experience.map((exp) => (
                   <ProfileExperience key={exp._id} experience={exp}/>
                 ))}
               </Fragment>) : (<h4>No experience credentials</h4>)}
             </div>
             <div className="profile-edu bg-white p-2">
               <h2 className="text-primary">Education</h2>
-              {props.profile.profile.education.length > 0 ? (<Fragment>
-                {props.profile.profile.education.map((exp) => (
+              {profile.profile.education.length > 0 ? (<Fragment>
+                {profile.profile.education.map((exp) => (
                   <ProfileEducation key={exp._id} education={exp}/>
                 ))}
               </Fragment>) : (<h4>No education credentials</h4>)}
             </div>
-            {props.profile.profile.githubUsername && (
-              <ProfileGithub username={props.profile.profile.githubUsername}/>
+            {profile.profile.githubUsername && (
+              <ProfileGithub username={profile.profile.githubUsername}/>
             )}
           </div>
         </Fragment>
@@ -59,7 +64,7 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
-  getProfileById: PropTypes.func.isRequired,
+  getProfileByIdConnect: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 };
@@ -71,4 +76,7 @@ const mapStateToProps = (state) => (
   }
 );
 
-export default connect(mapStateToProps, { getProfileById })(Profile);
+export default connect(
+  mapStateToProps,
+  { getProfileByIdConnect: getProfileById },
+)(Profile);

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExperience } from '../../actions/profile';
 
-const AddExperience = (props) => {
+const AddExperience = ({ addExperienceConnect, history }) => {
   const [formData, setFormData] = useState({
     company: '',
     title: '',
@@ -25,7 +25,7 @@ const AddExperience = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addExperience(formData, props.history);
+    addExperienceConnect(formData, history);
   };
 
   return (
@@ -94,7 +94,10 @@ const AddExperience = (props) => {
 };
 
 AddExperience.propTypes = {
-  addExperience: PropTypes.func.isRequired,
+  addExperienceConnect: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addExperience })(withRouter(AddExperience));
+export default connect(
+  null,
+  { addExperienceConnect: addExperience },
+)(withRouter(AddExperience));
