@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
+import PostForm from './PostForm';
 
 const Post = ({ getPostsConnect, post }) => {
   useEffect(() => {
@@ -16,7 +17,7 @@ const Post = ({ getPostsConnect, post }) => {
         <i className="fas fa-user"></i>
         Welcome to the community
       </p>
-      {/* {PostForm} */}
+      <PostForm />
       <div className="posts">
         {
           post.posts.map((p) => (
