@@ -19,22 +19,22 @@ const ProfileEducation = ({
         {from}
       </Moment> -
       {!to ? ' Now' : <Moment format="YYYY/MM/DD">{to}</Moment>}
-      <p>
-        <strong>Degree: </strong> {degree}
-      </p>
-      <p>
-        <strong>Field of Study: </strong> {fieldOfStudy}
-      </p>
-      <p>
-        <strong>Description: </strong> {description}
-      </p>
+    </p>
+    <p>
+      <strong>Degree: </strong> {degree}
+    </p>
+    <p>
+      <strong>Field of Study: </strong> {fieldOfStudy}
+    </p>
+    <p>
+      <strong>Description: </strong> {description}
     </p>
   </div>
 );
 
 
 ProfileEducation.propTypes = {
-  education: PropTypes.array.isRequired,
+  education: PropTypes.object.isRequired,
 };
 
 export default ProfileEducation;
