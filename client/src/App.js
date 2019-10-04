@@ -9,7 +9,7 @@ import NavBar from './components/layout/NavBar';
 import Landing from './components/layout/Landing';
 import Routes from './components/routing/Routes';
 
-import './App.css';
+import './css/style.css';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

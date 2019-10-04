@@ -11,13 +11,13 @@ import CommentItem from './CommentItem';
 const Post = ({ getPostConnect, post, match }) => {
   useEffect(() => {
     getPostConnect(match.params.id);
-  }, [getPostConnect]);
+  }, [getPostConnect, match.params.id]);
 
   return post.loading || post.post === null ? <Spinner /> : <Fragment>
     <Link to='/posts' className="btn">Back to Posts</Link>
     <PostItem post={post.post} showActions={false}/>
     <CommentForm postId={post.post._id} />
-    <div className="comments">
+    <div className="posts">
       {post.post.comments.map((c) => (
         <CommentItem key={c._id} comment={c} postId={post.post._id}/>
       ))}

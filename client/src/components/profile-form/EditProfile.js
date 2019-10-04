@@ -36,13 +36,13 @@ const EditProfile = ({
       skills: profile.loading || !profile.profile.skills ? '' : profile.profile.skills.join(','),
       githubUsername: profile.loading || !profile.profile.githubUsername ? '' : profile.profile.githubUsername,
       bio: profile.loading || !profile.profile.bio ? '' : profile.profile.bio,
-      twitter: profile.loading || !profile.profile.social ? '' : profile.profile.social.twitter,
-      facebook: profile.loading || !profile.profile.social ? '' : profile.profile.social.facebook,
-      linkedin: profile.loading || !profile.profile.social ? '' : profile.profile.social.linkedin,
-      youtube: profile.loading || !profile.profile.social ? '' : profile.profile.social.youtube,
-      instagram: profile.loading || !profile.profile.social ? '' : profile.profile.social.instagram,
+      twitter: profile.loading || !profile.profile.social.twitter ? '' : profile.profile.social.twitter,
+      facebook: profile.loading || !profile.profile.social.facebook ? '' : profile.profile.social.facebook,
+      linkedin: profile.loading || !profile.profile.social.linkedin ? '' : profile.profile.social.linkedin,
+      youtube: profile.loading || !profile.profile.social.youtube ? '' : profile.profile.social.youtube,
+      instagram: profile.loading || !profile.profile.social.instagram ? '' : profile.profile.social.instagram,
     });
-  }, [getCurrentProfileConnect, profile]);
+  }, [getCurrentProfileConnect]);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

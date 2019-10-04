@@ -22,9 +22,9 @@ const Login = ({ loginConnect, isAuthenticated }) => {
     loginConnect(email, password);
   };
 
-  // Redirect if loged in
+  // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/posts' />;
   }
 
   return (

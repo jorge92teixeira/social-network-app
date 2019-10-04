@@ -14,7 +14,7 @@ const CommentForm = ({ postId, addCommentConnect }) => {
 
   return (
     <div className="post-form">
-    <div className="bg-primary p">
+    <div className="post-form-header bg-primary">
       <h3>Leave a Comment</h3>
     </div>
     <form className="form my-1" onSubmit={(e) => onSubmit(e)}>

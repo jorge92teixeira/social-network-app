@@ -24,9 +24,8 @@ const Dashboard = ({
     : <Fragment>
       <h1 className="large text-primary">Dashboard</h1>
       <p className="lead">
-        <i className="fas fa-user">
-          Welcome { auth.user && auth.user.name }
-        </i>
+        <i className="fas fa-user"></i>
+        Welcome { auth.user && auth.user.name }
       </p>
       {
         profile.profile !== null
@@ -40,7 +39,7 @@ const Dashboard = ({
                 onClick={() => deleteAccountConnect()}
               >
                 <i className="fas fa-user-minus"></i>
-                Delete my Accouint
+                Delete my Account
               </button>
             </div>
           </Fragment>
