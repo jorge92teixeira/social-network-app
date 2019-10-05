@@ -15,10 +15,10 @@ const Profiles = ({ getProfilesConnect, profile }) => {
       { profile.loading
         ? <Spinner />
         : <Fragment>
-          <h1 className="large text-primary">Developers</h1>
+          <h1 className="large text-primary">Users</h1>
           <p className="lead">
             <i className="fab fa-connectdevelop"></i>
-            Browse and connect with developers
+            {' '}Browse and connect with other users
           </p>
           <div>
             { profile.profiles.length > 0
