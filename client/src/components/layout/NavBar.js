@@ -3,31 +3,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import NavMenu from './NavMenu';
 
-const NavBar = ({ auth: { isAuthenticated, loading, user }, logoutConnect }) => {
+const NavBar = ({ auth: { isAuthenticated, loading } }) => {
   const authLinks = (
-    <ul>
-      <li><Link to='/profiles'>Users</Link></li>
-      <li>
-        {!loading && user !== null
-          ? <Link to={`/profile/${user._id}`}>Profile</Link>
-          : <span>Profile</span>
-        }
-      </li>
-      <li><Link to='/posts'>Posts</Link></li>
-      <li>
-        <Link to='/dashboard'>
-          <i className="fas fa-user" />{' '}
-          <span className="hide-sm">Dashboard</span>
-        </Link>
-      </li>
-      <li>
-        <a onClick={logoutConnect} href="#!">
-          <i className="fas fa-sign-out-alt"></i>{' '}
-          <span className="hide-sm">Logout</span>
-        </a>
-      </li>
-    </ul>
+    <NavMenu />
   );
   const guestLinks = (
     <ul>

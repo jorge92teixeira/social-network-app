@@ -13,6 +13,7 @@ const ProfileItem = ({ profile }) => (
         View Profile
       </Link>
     </div>
+    <p className="bio">{profile.bio}</p>
     {/* <ul>
       {profile.skills.slice(0, 4).map((skill, index) => (
         <li key={index} className="text-primary">

@@ -12,7 +12,7 @@ const ProfileAbout = ({
     {
       bio && (<Fragment>
         <h2 className="text-primary">{name.trim().split(' ')[0]}'s Bio</h2>
-        <p>{bio}</p>
+        <p className="bio">{bio}</p>
         <div className="line"></div>
       </Fragment>)
     }

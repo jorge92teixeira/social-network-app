@@ -19,6 +19,14 @@ export const loadUser = () => async (dispatch) => {
   }
   try {
     const res = await axios.get('/api/auth');
+    // const res = await fetch('/api/auth', {
+    //   headers: {
+    //     'x-auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQ4NjU2ZjVjNTAxYzY0YzkwMzU5NDc1In0sImlhdCI6MTU3MDMxMTk4OSwiZXhwIjoxNTcwNjcxOTg5fQ.gC08aEPoJe1YCUqncu7wk47accPfnVAgguvcA48CMGk',
+    //   },
+    // });
+    // console.log(res);
+    // const json = await res.json();
+    // console.log(json);
     dispatch({
       type: USER_LOADED,
       payload: res.data,
