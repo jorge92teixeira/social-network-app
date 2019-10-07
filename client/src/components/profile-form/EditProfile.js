@@ -8,7 +8,7 @@ const EditProfile = ({
   getCurrentProfileConnect,
   createProfileConnect,
   history,
-  profile,
+  profile: { profile, loading },
 }) => {
   const [formData, setFormData] = useState({
     company: '',
@@ -29,20 +29,33 @@ const EditProfile = ({
   useEffect(() => {
     getCurrentProfileConnect();
     setFormData({
-      company: profile.loading || !profile.profile.company ? '' : profile.profile.company,
-      website: profile.loading || !profile.profile.website ? '' : profile.profile.website,
-      location: profile.loading || !profile.profile.location ? '' : profile.profile.location,
-      status: profile.loading || !profile.profile.status ? '' : profile.profile.status,
-      skills: profile.loading || !profile.profile.skills ? '' : profile.profile.skills.join(','),
-      githubUsername: profile.loading || !profile.profile.githubUsername ? '' : profile.profile.githubUsername,
-      bio: profile.loading || !profile.profile.bio ? '' : profile.profile.bio,
-      twitter: profile.loading || !profile.profile.social.twitter ? '' : profile.profile.social.twitter,
-      facebook: profile.loading || !profile.profile.social.facebook ? '' : profile.profile.social.facebook,
-      linkedin: profile.loading || !profile.profile.social.linkedin ? '' : profile.profile.social.linkedin,
-      youtube: profile.loading || !profile.profile.social.youtube ? '' : profile.profile.social.youtube,
-      instagram: profile.loading || !profile.profile.social.instagram ? '' : profile.profile.social.instagram,
+      company: loading || !profile.company ? '' : profile.company,
+      website: loading || !profile.website ? '' : profile.website,
+      location: loading || !profile.location ? '' : profile.location,
+      status: loading || !profile.status ? '' : profile.status,
+      skills: loading || !profile.skills ? '' : profile.skills.join(','),
+      githubUsername: loading || !profile.githubUsername ? '' : profile.githubUsername,
+      bio: loading || !profile.bio ? '' : profile.bio,
+      twitter: loading || !profile.social.twitter ? '' : profile.social.twitter,
+      facebook: loading || !profile.social.facebook ? '' : profile.social.facebook,
+      linkedin: loading || !profile.social.linkedin ? '' : profile.social.linkedin,
+      youtube: loading || !profile.social.youtube ? '' : profile.social.youtube,
+      instagram: loading || !profile.social.instagram ? '' : profile.social.instagram,
     });
-  }, [getCurrentProfileConnect]);
+  }, [getCurrentProfileConnect,
+    loading,
+    profile.company,
+    profile.website,
+    profile.location,
+    profile.status,
+    profile.githubUsername,
+    profile.bio,
+    profile.social.twitter,
+    profile.social.facebook,
+    profile.social.linkedin,
+    profile.social.youtube,
+    profile.social.instagram,
+  ]);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

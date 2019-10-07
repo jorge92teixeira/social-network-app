@@ -475,7 +475,7 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: #f7f7f7;
   color: #333;
 }
 
@@ -523,6 +523,9 @@ img {
 .dropdown-btn {
   color: #f4f4f4;
   cursor: pointer;
+}
+.dropdown-btn:hover {
+  color: #17a2b8;
 }
 
 .dropdown-content {

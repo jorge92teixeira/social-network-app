@@ -1,5 +1,5 @@
 {
-  "name": "social-dev-app",
+  "name": "social-network-app",
   "version": "1.0.0",
   "description": "social network for developers",
   "main": "server.js",

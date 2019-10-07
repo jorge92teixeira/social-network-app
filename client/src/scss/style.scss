@@ -12,7 +12,7 @@ body {
   font-family: 'Raleway', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: $background-color;
   color: #333;
 }
 
@@ -64,6 +64,10 @@ img {
 .dropdown-btn {
   color: $light-color;
   cursor: pointer;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .dropdown-content {

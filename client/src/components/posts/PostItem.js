@@ -24,7 +24,7 @@ const PostItem = ({
       <p className="my-1">
         {post.text}
       </p>
-        <p className="post-date">
+      <p className="post-date">
           Posted on {moment(post.date).format('YYYY/MM/DD')}
       </p>
 
@@ -43,7 +43,7 @@ const PostItem = ({
           <i className="fas fa-thumbs-down"></i>
         </button>
         <Link to={`/posts/${post._id}`} className="btn btn-primary">
-          Discussion {
+          Comments {
             post.comments.length > 0 && (
               <span className='comment-count'>{post.comments.length}</span>
             )
