@@ -33,9 +33,9 @@ export const getCurrentProfile = () => async (dispatch) => {
 
 // Get all profiles
 export const getProfiles = () => async (dispatch) => {
-  dispatch({
-    type: CLEAR_PROFILE,
-  });
+  // dispatch({
+  //   type: CLEAR_PROFILE,
+  // });
   try {
     const res = await axios.get('/api/profile');
     dispatch({
@@ -106,9 +106,7 @@ export const createProfile = (formData, history, edit = false) => async (dispatc
     });
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
 
-    if (edit) {
-      history.push('/dashboard');
-    }
+    history.push('/dashboard');
   } catch (error) {
     const { errors } = error.response.data;
     if (errors) {
@@ -239,7 +237,7 @@ export const deleteAccount = () => async (dispatch) => {
       dispatch({
         type: ACCOUNT_DELETED,
       });
-      dispatch(setAlert('Your account has benn permanently deleted'));
+      dispatch(setAlert('Your account has been permanently deleted'));
     } catch (error) {
       dispatch({
         type: PROFILE_ERROR,

@@ -60,10 +60,12 @@ const NavMenu = ({ auth: { loading, user }, logoutConnect }) => {
             <i className="fas fa-user" />{' '}
             <span className="hide-sm">Dashboard</span>
           </Link>
-          <a onClick={logoutConnect} href="#!">
-            <i className="fas fa-sign-out-alt"></i>{' '}
-            <span className="hide-sm">Logout</span>
-          </a>
+          <Link to='/'>
+            <span onClick={logoutConnect} >
+              <i className="fas fa-sign-out-alt"></i>{' '}
+              <span className="hide-sm">Logout</span>
+            </span>
+          </Link>
         </div>
       )}
     </div>

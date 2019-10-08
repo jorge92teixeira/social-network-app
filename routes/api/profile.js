@@ -140,8 +140,9 @@ router.get('/users/:user_id', async (req, res) => {
 // @access  Private
 router.delete('/', auth, async (req, res) => {
   try {
+    console.log(req.user);
     // Remove user posts
-    await Post.deleteMany({ user: req.use.id });
+    await Post.deleteMany({ user: req.user.id });
     // Remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
     // Remove user
@@ -219,8 +220,8 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
 router.put('/education', [auth, [
   check('school', 'School is required').not().isEmpty(),
   check('degree', 'Degree is required').not().isEmpty(),
-  check('fieldOfStudy', 'Field of Study is required').not().isEmpty(),
-  check('from', 'From date is required').not().isEmpty(),
+  // check('fieldOfStudy', 'Field of Study is required').not().isEmpty(),
+  // check('from', 'From date is required').not().isEmpty(),
 ]], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -229,7 +230,7 @@ router.put('/education', [auth, [
   const {
     school,
     degree,
-    fieldOfStudy,
+    // fieldOfStudy,
     from,
     to,
     current,
@@ -239,7 +240,7 @@ router.put('/education', [auth, [
   const newEdu = {
     school,
     degree,
-    fieldOfStudy,
+    // fieldOfStudy,
     from,
     to,
     current,

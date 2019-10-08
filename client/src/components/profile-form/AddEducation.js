@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEducation } from '../../actions/profile';
@@ -8,7 +8,7 @@ const AddEducation = ({ addEducationConnect, history }) => {
   const [formData, setFormData] = useState({
     school: '',
     degree: '',
-    fieldOfStudy: '',
+    // fieldOfStudy: '',
     from: '',
     to: '',
     current: false,
@@ -44,9 +44,9 @@ const AddEducation = ({ addEducationConnect, history }) => {
         <div className="form-group">
           <input type="text" placeholder="* Degree" name="degree" value={formData.degree} onChange={(e) => onChange(e)} required />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <input type="text" placeholder="Field of Study" name="fieldOfStudy" value={formData.fieldOfStudy} onChange={(e) => onChange(e)} />
-        </div>
+        </div> */}
         <div className="form-group">
           <h4>From Date</h4>
           <input type="date" name="from" value={formData.from} onChange={(e) => onChange(e)} />
@@ -86,7 +86,7 @@ const AddEducation = ({ addEducationConnect, history }) => {
           ></textarea>
         </div>
         <input type="submit" className="btn btn-primary my-1" />
-        <a className="btn btn-light my-1" href="dashboard.html">Go Back</a>
+        <Link className="btn btn-light my-1" to="/dashboard">Go Back</Link>
       </form>
     </Fragment>
   );

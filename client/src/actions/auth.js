@@ -11,6 +11,7 @@ import {
 } from './types';
 import setAlert from './alert';
 import setAuthToken from '../utils/setAuthToken';
+import { getCurrentProfile } from './profile';
 
 // Load User
 export const loadUser = () => async (dispatch) => {
@@ -31,6 +32,7 @@ export const loadUser = () => async (dispatch) => {
       type: USER_LOADED,
       payload: res.data,
     });
+    dispatch(getCurrentProfile());
   } catch (error) {
     dispatch({
       type: AUTH_ERROR,

@@ -1,10 +1,15 @@
-import React, { useState, Fragment } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import React, { useState, Fragment, useEffect } from 'react';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile } from '../../actions/profile';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 
-const CreateProfile = ({ createProfileConnect, history }) => {
+const CreateProfile = ({
+  createProfileConnect,
+  history,
+  profile: { profile, loading },
+  getCurrentProfileConnect,
+}) => {
   const [formData, setFormData] = useState({
     company: '',
     website: '',
@@ -30,7 +35,13 @@ const CreateProfile = ({ createProfileConnect, history }) => {
     createProfileConnect(formData, history);
   };
 
-  return (
+  useEffect(() => {
+    getCurrentProfileConnect();
+  }, [getCurrentProfileConnect]);
+
+  return loading && profile === null ? (
+    <Redirect to='/dashboard' />
+  ) : (
     <Fragment>
       <h1 className="large text-primary">
         Create Your Profile
@@ -98,7 +109,6 @@ const CreateProfile = ({ createProfileConnect, history }) => {
           >
             Add Social Network Links
           </button>
-          <span>Optional</span>
         </div>
 
         {
@@ -130,7 +140,7 @@ const CreateProfile = ({ createProfileConnect, history }) => {
           </Fragment>
         }
 
-        <input type="submit" className="btn btn-primary my-1" />
+        <input type="submit" value="Submit" className="btn btn-primary my-1" />
         <Link
           className="btn btn-light my-1"
           to="/dashboard">
@@ -143,9 +153,18 @@ const CreateProfile = ({ createProfileConnect, history }) => {
 
 CreateProfile.propTypes = {
   createProfileConnect: PropTypes.func.isRequired,
+  getCurrentProfileConnect: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
+
 export default connect(
-  null,
-  { createProfileConnect: createProfile },
+  mapStateToProps,
+  {
+    createProfileConnect: createProfile,
+    getCurrentProfileConnect: getCurrentProfile,
+  },
 )(withRouter(CreateProfile));
