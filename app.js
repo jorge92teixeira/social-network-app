@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const connectDB = require('./config/db');
-const config = require('./config/config');
 
 const app = express();
 
@@ -27,6 +26,4 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(config.PORT, () => {
-  console.log(`Server running on port ${config.PORT}`);
-});
+module.exports = app;

@@ -1,11 +1,12 @@
 {
   "name": "social-network-app",
   "version": "1.0.0",
-  "description": "social network for developers",
-  "main": "server.js",
+  "description": "social network",
+  "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node server",
-    "server": "cross-env NODE_ENV=development nodemon server",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "server": "cross-env NODE_ENV=development nodemon index.js",
     "client": "BROWSER=none npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
@@ -33,6 +34,11 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "nodemon": "^1.19.2"
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.2",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
