@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { deleteEducation } from '../../actions/profile';
+import { deleteEducation } from '../../redux/actions/profile';
 
 const Education = ({ education, deleteEducationConnect }) => {
   const educations = education.map((edu) => (

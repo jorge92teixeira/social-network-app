@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { logout } from '../../actions/auth';
+import { logout } from '../../redux/actions/auth';
 import NavMenu from './NavMenu';
 
 const NavBar = ({ auth: { isAuthenticated, loading } }) => {

@@ -2,7 +2,7 @@ import React, { useState, Fragment, useEffect } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile, getCurrentProfile } from '../../actions/profile';
+import { createProfile, getCurrentProfile } from '../../redux/actions/profile';
 
 const EditProfile = ({
   getCurrentProfileConnect,
@@ -44,6 +44,14 @@ const EditProfile = ({
     });
   }, [getCurrentProfileConnect,
     loading,
+    // profile.bio,
+    // profile.company,
+    // profile.githubUsername,
+    // profile.location,
+    // profile.skills,
+    // profile.social,
+    // profile.status,
+    // profile.website,
   ]);
 
   const onChange = (e) => {

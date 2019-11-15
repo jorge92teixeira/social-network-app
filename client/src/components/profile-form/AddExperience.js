@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addExperience } from '../../actions/profile';
+import { addExperience } from '../../redux/actions/profile';
 
 const AddExperience = ({ addExperienceConnect, history }) => {
   const [formData, setFormData] = useState({

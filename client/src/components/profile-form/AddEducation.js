@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addEducation } from '../../actions/profile';
+import { addEducation } from '../../redux/actions/profile';
 
 const AddEducation = ({ addEducationConnect, history }) => {
   const [formData, setFormData] = useState({
@@ -44,9 +44,6 @@ const AddEducation = ({ addEducationConnect, history }) => {
         <div className="form-group">
           <input type="text" placeholder="* Degree" name="degree" value={formData.degree} onChange={(e) => onChange(e)} required />
         </div>
-        {/* <div className="form-group">
-          <input type="text" placeholder="Field of Study" name="fieldOfStudy" value={formData.fieldOfStudy} onChange={(e) => onChange(e)} />
-        </div> */}
         <div className="form-group">
           <h4>From Date</h4>
           <input type="date" name="from" value={formData.from} onChange={(e) => onChange(e)} />

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../../actions/auth';
+import { logout } from '../../redux/actions/auth';
 
 
 const NavMenu = ({ auth: { loading, user }, logoutConnect }) => {

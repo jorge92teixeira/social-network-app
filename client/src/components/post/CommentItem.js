@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { deleteComment } from '../../actions/post';
+import { deleteComment } from '../../redux/actions/post';
 
 const CommentItem = ({
   postId,
