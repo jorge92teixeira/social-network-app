@@ -13,7 +13,7 @@ const config = require('../../config/config');
 // @access  Public
 router.post('/', [
   check('name', 'Name is Required').not().isEmpty(),
-  check('email', 'Please include a valida email').isEmail(),
+  check('email', 'Please include a valid email').isEmail(),
   check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
 ], async (req, res) => {
   const errors = validationResult(req);
