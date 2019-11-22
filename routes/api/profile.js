@@ -140,7 +140,6 @@ router.get('/users/:user_id', async (req, res) => {
 // @access  Private
 router.delete('/', auth, async (req, res) => {
   try {
-    console.log(req.user);
     // Remove user posts
     await Post.deleteMany({ user: req.user.id });
     // Remove profile
@@ -164,7 +163,7 @@ router.put('/experience', [auth, [
 ]], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ erros: errors.array() });
+    return res.status(400).json({ errors: errors.array() });
   }
   const {
     title,
@@ -225,7 +224,7 @@ router.put('/education', [auth, [
 ]], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ erros: errors.array() });
+    return res.status(400).json({ errors: errors.array() });
   }
   const {
     school,
