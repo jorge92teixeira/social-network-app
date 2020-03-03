@@ -1,3 +1,6 @@
 # social-network-app
 
-https://jorgemrt-social-network.herokuapp.com/
+https://jorgemrt.com/social-network/
+
+
+http://localhost:3001/social-network/

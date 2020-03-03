@@ -20,15 +20,15 @@ afterAll(() => {
 });
 
 
-describe('POST /api/posts', () => {
+describe('POST /social-network/api/posts', () => {
   test('fails if user is not authenticated', async () => {
     await request(app)
-      .post('/api/posts')
+      .post('/social-network/api/posts')
       .expect(401);
   });
   test('fails if text is empty', async () => {
     const response = await request(app)
-      .post('/api/posts')
+      .post('/social-network/api/posts')
       .set('x-auth-token', tokens[0])
       .send({ })
       .expect(400);
@@ -36,7 +36,7 @@ describe('POST /api/posts', () => {
   });
   test('returns post if success', async () => {
     const response = await request(app)
-      .post('/api/posts')
+      .post('/social-network/api/posts')
       .set('x-auth-token', tokens[0])
       .send({ text: 'test post' })
       .expect(200);
@@ -45,15 +45,15 @@ describe('POST /api/posts', () => {
   });
 });
 
-describe('GET /api/posts', () => {
+describe('GET /social-network/api/posts', () => {
   test('fails if user is not authenticated', async () => {
     await request(app)
-      .get('/api/posts')
+      .get('/social-network/api/posts')
       .expect(401);
   });
   test('returns posts if success', async () => {
     const response = await request(app)
-      .get('/api/posts')
+      .get('/social-network/api/posts')
       .set('x-auth-token', tokens[0])
       .expect(200);
     expect(response.body.length).toBe(1);
@@ -61,19 +61,19 @@ describe('GET /api/posts', () => {
   });
 });
 
-describe('GET /api/posts/:id', () => {
+describe('GET /social-network/api/posts/:id', () => {
   test('fails if user is not authenticated', async () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const posts = await Post.find({ user: id });
     await request(app)
-      .get(`/api/posts/${posts[0].id}`)
+      .get(`/social-network/api/posts/${posts[0].id}`)
       .expect(401);
   });
   test('returns post if success', async () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const posts = await Post.find({ user: id });
     const response = await request(app)
-      .get(`/api/posts/${posts[0].id}`)
+      .get(`/social-network/api/posts/${posts[0].id}`)
       .set('x-auth-token', tokens[0])
       .expect(200);
     expect(response.body.text).toBe(posts[0].text);
@@ -81,12 +81,12 @@ describe('GET /api/posts/:id', () => {
   });
 });
 
-describe('DELETE /api/posts/:id', () => {
+describe('DELETE /social-network/api/posts/:id', () => {
   test('fails if user is not authenticated', async () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: id });
     await request(app)
-      .delete(`/api/posts/${post.id}`)
+      .delete(`/social-network/api/posts/${post.id}`)
       .expect(401);
   });
 
@@ -95,7 +95,7 @@ describe('DELETE /api/posts/:id', () => {
     const post = await Post.findOne({ user: id });
     await Post.deleteMany({});
     const response = await request(app)
-      .delete(`/api/posts/${post.id}`)
+      .delete(`/social-network/api/posts/${post.id}`)
       .set('x-auth-token', tokens[0])
       .expect(404);
     expect(response.body.msg).toBe('Post not found');
@@ -105,7 +105,7 @@ describe('DELETE /api/posts/:id', () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: id });
     const response = await request(app)
-      .delete(`/api/posts/${post.id}`)
+      .delete(`/social-network/api/posts/${post.id}`)
       .set('x-auth-token', tokens[1])
       .expect(401);
     expect(response.body.msg).toBe('User not authorized');
@@ -114,26 +114,26 @@ describe('DELETE /api/posts/:id', () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: id });
     const response = await request(app)
-      .delete(`/api/posts/${post.id}`)
+      .delete(`/social-network/api/posts/${post.id}`)
       .set('x-auth-token', tokens[0])
       .expect(200);
     expect(response.body.msg).toBe('Post removed');
   });
 });
 
-describe('PUT /api/posts/like/:id', () => {
+describe('PUT /social-network/api/posts/like/:id', () => {
   test('fails if user is not authenticated', async () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: id });
     await request(app)
-      .put(`/api/posts/like/${post.id}`)
+      .put(`/social-network/api/posts/like/${post.id}`)
       .expect(401);
   });
   test('fails if user already liked post', async () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: id });
     const response = await request(app)
-      .put(`/api/posts/like/${post.id}`)
+      .put(`/social-network/api/posts/like/${post.id}`)
       .set('x-auth-token', tokens[0])
       .expect(400);
     expect(response.body.msg).toBe('Post already liked');
@@ -142,7 +142,7 @@ describe('PUT /api/posts/like/:id', () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: id });
     const response = await request(app)
-      .put(`/api/posts/like/${post.id}`)
+      .put(`/social-network/api/posts/like/${post.id}`)
       .set('x-auth-token', tokens[1])
       .expect(200);
     const test1 = await User.findOne({ email: 'test1@mail.com' });
@@ -151,12 +151,12 @@ describe('PUT /api/posts/like/:id', () => {
   });
 });
 
-describe('PUT /api/posts/unlike/:id', () => {
+describe('PUT /social-network/api/posts/unlike/:id', () => {
   test('fails if user is not authenticated', async () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: id });
     await request(app)
-      .put(`/api/posts/unlike/${post.id}`)
+      .put(`/social-network/api/posts/unlike/${post.id}`)
       .expect(401);
   });
 
@@ -164,7 +164,7 @@ describe('PUT /api/posts/unlike/:id', () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: id });
     const response = await request(app)
-      .put(`/api/posts/unlike/${post.id}`)
+      .put(`/social-network/api/posts/unlike/${post.id}`)
       .set('x-auth-token', tokens[1])
       .expect(400);
     expect(response.body.msg).toBe('Post has not yet been liked');
@@ -174,19 +174,19 @@ describe('PUT /api/posts/unlike/:id', () => {
     const { id } = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: id });
     const response = await request(app)
-      .put(`/api/posts/unlike/${post.id}`)
+      .put(`/social-network/api/posts/unlike/${post.id}`)
       .set('x-auth-token', tokens[0])
       .expect(200);
     expect(response.body.length).toBe(0);
   });
 });
 
-describe('POST /api/posts/comment/:id', () => {
+describe('POST /social-network/api/posts/comment/:id', () => {
   test('fails if user is not authenticated', async () => {
     const user0 = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: user0.id });
     await request(app)
-      .post(`/api/posts/comment/${post.id}`)
+      .post(`/social-network/api/posts/comment/${post.id}`)
       .send({
         text: 'test comment',
         name: user0.name,
@@ -200,7 +200,7 @@ describe('POST /api/posts/comment/:id', () => {
     const user0 = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: user0.id });
     const response = await request(app)
-      .post(`/api/posts/comment/${post.id}`)
+      .post(`/social-network/api/posts/comment/${post.id}`)
       .set('x-auth-token', tokens[0])
       .send({
         name: user0.name,
@@ -215,7 +215,7 @@ describe('POST /api/posts/comment/:id', () => {
     const user0 = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: user0.id });
     const response = await request(app)
-      .post(`/api/posts/comment/${post.id}`)
+      .post(`/social-network/api/posts/comment/${post.id}`)
       .set('x-auth-token', tokens[0])
       .send({
         text: 'test comment 2',
@@ -228,13 +228,13 @@ describe('POST /api/posts/comment/:id', () => {
   });
 });
 
-describe('DELETE /api/posts/comment/:id/:comment_id', () => {
+describe('DELETE /social-network/api/posts/comment/:id/:comment_id', () => {
   test('fails if user is not authenticated', async () => {
     const user0 = await User.findOne({ email: 'test0@mail.com' });
     const post = await Post.findOne({ user: user0.id });
     const comment = post.comments[0];
     await request(app)
-      .delete(`/api/posts/comment/${post.id}/${comment.id}`)
+      .delete(`/social-network/api/posts/comment/${post.id}/${comment.id}`)
       .expect(401);
   });
 
@@ -244,7 +244,7 @@ describe('DELETE /api/posts/comment/:id/:comment_id', () => {
     const comment = post.comments[0];
     await Post.findByIdAndUpdate(post.id, { comments: [] });
     const response = await request(app)
-      .delete(`/api/posts/comment/${post.id}/${comment.id}`)
+      .delete(`/social-network/api/posts/comment/${post.id}/${comment.id}`)
       .set('x-auth-token', tokens[0])
       .expect(404);
     expect(response.body.msg).toBe('Comment does not exist');
@@ -255,7 +255,7 @@ describe('DELETE /api/posts/comment/:id/:comment_id', () => {
     const post = await Post.findOne({ user: user0.id });
     const comment = post.comments[0];
     const response = await request(app)
-      .delete(`/api/posts/comment/${post.id}/${comment.id}`)
+      .delete(`/social-network/api/posts/comment/${post.id}/${comment.id}`)
       .set('x-auth-token', tokens[1])
       .expect(401);
     expect(response.body.msg).toBe('User not authorized');
@@ -266,7 +266,7 @@ describe('DELETE /api/posts/comment/:id/:comment_id', () => {
     const post = await Post.findOne({ user: user0.id });
     const comment = post.comments[0];
     const response = await request(app)
-      .delete(`/api/posts/comment/${post.id}/${comment.id}`)
+      .delete(`/social-network/api/posts/comment/${post.id}/${comment.id}`)
       .set('x-auth-token', tokens[0])
       .expect(200);
     expect(response.body.length).toBe(0);

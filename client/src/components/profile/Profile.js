@@ -21,7 +21,6 @@ const Profile = ({
   }, [getProfileByIdConnect, match.params.id]);
 
   const whatToRender = () => {
-    console.log(match.params.id);
     if (profile.profile === null || profile.loading) {
       return <Spinner />;
     }
