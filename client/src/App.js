@@ -21,7 +21,7 @@ const App = () => {
   }, []);
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename='/social-network'>
         <Fragment>
           <NavBar />
           <Switch>
