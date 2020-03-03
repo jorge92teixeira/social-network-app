@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const auth = require('../../middleware/auth');
 const User = require('../../models/User');
-const config = require('../../config/config');
 
 // @route   GET /api/auth
 // @desc    Get logged in user
@@ -56,7 +55,7 @@ router.post('/', [
     };
     jwt.sign(
       payload,
-      config.JWT_SECRET,
+      process.env.JWT_SECRET,
       { expiresIn: 360000 },
       (error, token) => {
         if (error) throw error;
