@@ -1,7 +1,7 @@
 {
-  "name": "social-network-app",
+  "name": "social-network",
   "version": "1.0.0",
-  "description": "social network",
+  "description": "A social network built on Node.js and React.js",
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
@@ -11,6 +11,14 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm run build --prefix client"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorge92teixeira/social-network.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jorge92teixeira/social-network/issues"
+  },
+  "homepage": "https://github.com/jorge92teixeira/social-network#readme",
   "author": "jorge",
   "license": "ISC",
   "dependencies": {
