@@ -1,3 +1,3 @@
-# social-network-app
+# social-network
 
 https://jorgemrt.com/social-network/
