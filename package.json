@@ -30,7 +30,7 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mem": "^5.1.1",
-    "minimist": "^1.2.2",
+    "minimist": "^1.2.3",
     "mongoose": "^5.9.4",
     "request": "^2.88.2"
   },
